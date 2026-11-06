@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#101714" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta
+      name="description"
+      content="100枚の写真に潜む、ひとつの気配。心霊写真をタップして見つける探索ゲーム。"
+    />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>心霊記録室 — 写真に潜む気配</title>
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <a class="brand" href="./" aria-label="心霊記録室 ホーム"
+          ><span class="brand-icon">◉</span
+          ><span>心霊記録室<small>THE UNSEEN ARCHIVE</small></span></a
+        ><button id="sound" class="quiet" aria-label="効果音をオンにする">
+          音 OFF
+        </button>
+      </header>
+      <main>
+        <section id="home" class="screen">
+          <div class="intro">
+            <p class="eyebrow"><span class="dot"></span> 心霊写真探索ゲーム</p>
+            <h1>その写真には、<br />何かが<span>写っている。</span></h1>
+            <p class="description">
+              見慣れた風景に、ひとつだけ違う気配。<br />写真に潜む心霊を見つけてください。
+            </p>
+          </div>
+          <div class="cover">
+            <img
+              id="cover"
+              src="./photos/001.webp"
+              alt="薄暗い風景を写した心霊写真"
+              fetchpriority="high"
+            />
+            <div class="viewfinder"></div>
+            <span class="photo-label">EVIDENCE / 001 — 100</span
+            ><span class="recording">● REC</span>
+          </div>
+          <div class="start-panel">
+            <div class="archive-note">
+              <span>100</span>
+              <div>枚の心霊写真<small>一枚につき、心霊はひとつ。</small></div>
+            </div>
+            <button id="start" class="primary">
+              探索をはじめる <span>↗</span>
+            </button>
+            <div class="rules">
+              <span>◷ 1枚30秒</span><span>× 3回で終了</span
+              ><span>↻ 正解で自動継続</span>
+            </div>
+            <p class="best">最高記録 <b id="best">0</b> 連続発見</p>
+          </div>
+        </section>
+        <section id="game" class="screen" hidden>
+          <div class="game-heading">
+            <div>
+              <p class="eyebrow">EXPLORING THE UNSEEN</p>
+              <h2 id="photo-title">記録写真 001</h2>
+            </div>
+            <button id="quit" class="quiet">探索を終了</button>
+          </div>
+          <div class="stats">
+            <div><small>連続発見</small><strong id="streak">00</strong></div>
+            <div>
+              <small>残り時間</small><strong id="time">30<span>s</span></strong>
+            </div>
+            <div><small>残り回数</small><strong id="lives">● ● ●</strong></div>
+          </div>
+          <div class="timer-track"><div id="timer-bar"></div></div>
+          <div
+            id="photo-area"
+            class="photo-area"
+            role="button"
+            tabindex="0"
+            aria-label="写真の心霊がいる場所をタップ"
+          >
+            <img
+              id="photo"
+              alt="心霊をひとつ見つけてタップしてください"
+              draggable="false"
+            />
+            <div id="markers" aria-hidden="true"></div>
+            <div id="overlay" class="overlay" hidden>
+              <span class="success-symbol">○</span>
+              <h2>正解</h2>
+              <p>気配を、捉えた。</p>
+              <small>次の写真を現像中…</small>
+            </div>
+          </div>
+          <p id="game-message" class="game-message" role="status">
+            心霊が写っている場所をタップしてください。
+          </p>
+          <p class="game-foot">
+            THE UNSEEN ARCHIVE <span id="progress">001 / 100</span>
+          </p>
+        </section>
+        <section id="result" class="screen result" hidden>
+          <p class="eyebrow">EXPLORATION COMPLETE</p>
+          <div class="result-symbol">◉</div>
+          <h1>探索終了</h1>
+          <p id="reason"></p>
+          <div class="result-score">
+            <strong id="result-score">0</strong><span>連続発見</span>
+          </div>
+          <p id="record-message"></p>
+          <button id="restart" class="primary">
+            もう一度、探索する <span>↗</span></button
+          ><button id="back" class="quiet">記録室へ戻る</button>
+        </section>
+      </main>
+      <footer>
+        <span>気づいてしまったら、もう戻れない。</span
+        ><span>VOL. 01 / 100 PHOTOGRAPHS</span>
+      </footer>
+    </div>
+    <div id="update" class="update" role="status" hidden>
+      新しい記録を準備しています…
+    </div>
+    <div id="offline" class="offline" role="status" hidden>
+      オフライン · 保存済みの写真で探索できます
+    </div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
